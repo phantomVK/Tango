@@ -3,12 +3,10 @@ package com.phantomvk.tango;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.UiThread;
 
 import com.phantomvk.tango.store.PrefsStorage;
 import com.phantomvk.tango.store.Storage;
 
-@UiThread
 public final class Tango {
 
     private static boolean isInit = false;

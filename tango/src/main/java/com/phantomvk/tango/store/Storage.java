@@ -6,9 +6,9 @@ package com.phantomvk.tango.store;
 public abstract class Storage {
 
     /**
-     * Stored input method's height, default is -1.
+     * Stored input method's height, default is 'Integer.MIN_VALUE'.
      */
-    static int sHeight = -1;
+    static int sHeight = Integer.MIN_VALUE;
 
     /**
      * Save input method's height.

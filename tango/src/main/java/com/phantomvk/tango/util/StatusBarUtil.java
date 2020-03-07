@@ -20,7 +20,6 @@ import android.content.Context;
 import android.content.res.Resources;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.UiThread;
 
 /**
  * Get Status Bar's height.
@@ -38,7 +37,6 @@ public class StatusBarUtil {
      * @param context context to get resource
      * @return the height of the status bar
      */
-    @UiThread
     public static int getHeight(@NonNull Context context) {
         if (!sInit) {
             Resources r = context.getResources();
