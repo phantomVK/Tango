@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="tango_height_panel_min">220dp</dimen>
+    <dimen name="tango_height_panel_max">380dp</dimen>
+    <dimen name="tango_height_keyboard_min">80dp</dimen>
+</resources>

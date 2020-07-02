@@ -1,4 +1,4 @@
-package com.phantomvk.tango.store;
+package com.phantomvk.tango.storage;
 
 /**
  * Store input method's height using whatever you want. Such as SharedPrefs, MMKV, and etc.

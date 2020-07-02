@@ -1,4 +1,4 @@
-package com.phantomvk.tango.store;
+package com.phantomvk.tango.storage;
 
 import android.content.Context;
 import android.content.SharedPreferences;
