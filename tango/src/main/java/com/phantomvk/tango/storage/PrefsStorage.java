@@ -12,11 +12,14 @@ import static android.content.Context.MODE_PRIVATE;
  */
 public class PrefsStorage extends Storage {
 
+    private static final String PREFS_NAME = "com.phantomvk.tango.storage";
+    private static final String PREFS_KEY = "height";
+
     private final SharedPreferences prefs;
 
     public PrefsStorage(@NonNull Context context) {
-        final Context appContext = context.getApplicationContext();
-        prefs = appContext.getSharedPreferences("com.phantomvk.tango.store", MODE_PRIVATE);
+        Context appContext = context.getApplicationContext();
+        prefs = appContext.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
     }
 
     @Override
@@ -24,19 +27,23 @@ public class PrefsStorage extends Storage {
         if (height < 0 || height == sHeight) return false;
 
         sHeight = height;
-        prefs.edit().putInt("height", height).apply();
+        prefs.edit().putInt(PREFS_KEY, height).apply();
         return true;
     }
 
     @Override
     public int get(int defValue) {
-        return sHeight == Integer.MIN_VALUE ? (sHeight = prefs.getInt("height", defValue)) : sHeight;
+        if (sHeight == Integer.MIN_VALUE) {
+            sHeight = prefs.getInt(PREFS_KEY, defValue);
+        }
+
+        return sHeight;
     }
 
     @Override
     public boolean remove() {
         sHeight = Integer.MIN_VALUE;
-        prefs.edit().remove("height").apply();
+        prefs.edit().remove(PREFS_KEY).apply();
         return true;
     }
 }

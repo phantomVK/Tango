@@ -9,7 +9,7 @@ import com.phantomvk.tango.storage.Storage;
 
 public final class Tango {
 
-    private static boolean isInit = false;
+    private volatile static boolean isInit = false;
     private static Storage sStorage;
     private static Context appContext; // Application Context only.
 
@@ -33,6 +33,8 @@ public final class Tango {
      * @param storage Storage
      */
     public static void init(@NonNull Context context, @NonNull Storage storage) {
+        if (isInit) return;
+
         appContext = context.getApplicationContext();
         sStorage = storage;
         isInit = true;
