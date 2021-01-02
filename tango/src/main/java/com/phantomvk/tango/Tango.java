@@ -2,8 +2,6 @@ package com.phantomvk.tango;
 
 import android.content.Context;
 
-import androidx.annotation.NonNull;
-
 import com.phantomvk.tango.storage.PrefsStorage;
 import com.phantomvk.tango.storage.Storage;
 
@@ -20,7 +18,7 @@ public final class Tango {
      *
      * @param context Application context
      */
-    public static void init(@NonNull Context context) {
+    public static void init(Context context) {
         init(context, new PrefsStorage(context));
     }
 
@@ -32,15 +30,20 @@ public final class Tango {
      * @param context Application context
      * @param storage Storage
      */
-    public static void init(@NonNull Context context, @NonNull Storage storage) {
+    public static void init(Context context, Storage storage) {
         if (isInit) return;
+        if (context == null) throw new NullPointerException("Context should not be null.");
+        if (storage == null) throw new NullPointerException("Storage should not be null.");
 
-        appContext = context.getApplicationContext();
-        sStorage = storage;
-        isInit = true;
+        synchronized (Tango.class) {
+            if (isInit) return;
+
+            appContext = context.getApplicationContext();
+            sStorage = storage;
+            isInit = true;
+        }
     }
 
-    @NonNull
     public static Storage getStorage() {
         if (!isInit) {
             throw new RuntimeException("Tango::Init->Invoke init() first.");
@@ -49,7 +52,6 @@ public final class Tango {
         }
     }
 
-    @NonNull
     public static Context getAppContext() {
         if (!isInit) {
             throw new RuntimeException("Tango::Init->Invoke init() first.");

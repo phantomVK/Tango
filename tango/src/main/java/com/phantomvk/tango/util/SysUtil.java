@@ -6,6 +6,7 @@ import android.util.DisplayMetrics;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
 
 import static android.os.Build.VERSION.SDK_INT;
 import static android.os.Build.VERSION_CODES.KITKAT;
@@ -23,7 +24,7 @@ public final class SysUtil {
 
     public static boolean isFitsSystemWindows(@NonNull Activity activity) {
         ViewGroup group = activity.findViewById(android.R.id.content);
-        return group.getChildAt(0).getFitsSystemWindows();
+        return ViewCompat.getFitsSystemWindows(group.getChildAt(0));
     }
 
     public static boolean isTranslucentStatus(@NonNull Activity activity) {
